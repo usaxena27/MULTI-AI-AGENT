@@ -1,0 +1,50 @@
+2025-11-20 17:36:25,087 - INFO - Sending request to API at http://127.0.0.1:9999/chat
+2025-11-20 17:36:25,192 - INFO - Request received for model : llama3-70b-8192
+2025-11-20 17:36:27,145 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2025-11-20 17:36:27,147 - ERROR - Error in get_response: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2025-11-20 17:36:27,150 - ERROR - Backend returned HTTP error N/A
+Traceback (most recent call last):
+  File "E:\PROJECTS LLMOPS\MULTI-AI AGENT\app\frontend\ui.py", line 84, in call_backend
+    response.raise_for_status()
+  File "E:\PROJECTS LLMOPS\MULTI-AI AGENT\venv\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: http://127.0.0.1:9999/chat
+2025-11-20 17:36:27,181 - ERROR - CustomException: Backend returned an error: 500 Server Error: Internal Server Error for url: http://127.0.0.1:9999/chat. Details: {"detail":"Internal Server Error | Error: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}} | File: E:\\PROJECTS LLMOPS\\MULTI-AI AGENT\\app\\backend\\api.py | Line: 28"} | Error: 500 Server Error: Internal Server Error for url: http://127.0.0.1:9999/chat | File: E:\PROJECTS LLMOPS\MULTI-AI AGENT\app\frontend\ui.py | Line: 84
+2025-11-20 17:36:36,635 - INFO - Sending request to API at http://127.0.0.1:9999/chat
+2025-11-20 17:36:36,639 - INFO - Request received for model : llama-3.3-70b-versatile
+2025-11-20 17:36:37,958 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-20 17:36:40,817 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-20 17:36:40,818 - INFO - Response generated successfully from AI Agent {request.model_name}
+2025-11-20 17:36:40,821 - INFO - Received response from API
+2025-11-20 20:20:12,453 - INFO - Sending request to API
+2025-11-20 20:20:12,690 - INFO - Request received for model : llama-3.1-8b-instant
+2025-11-20 20:20:17,916 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-20 20:20:20,964 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-20 20:20:20,983 - INFO - Response generated successfully from AI Agent {request.model_name}
+2025-11-20 20:20:20,985 - INFO - Received response from API
+2025-11-20 20:30:55,979 - INFO - Sending request to API at http://127.0.0.1:9999/chat
+2025-11-20 20:30:56,387 - INFO - Request received for model : llama-3.1-8b-instant
+2025-11-20 20:31:01,453 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-20 20:31:06,283 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-20 20:31:06,298 - INFO - Response generated successfully from AI Agent {request.model_name}
+2025-11-20 20:31:06,301 - INFO - Received response from API
+2025-11-20 20:31:40,966 - INFO - Starting backend service..
+2025-11-20 20:31:42,968 - INFO - Starting frontend service..
+2025-11-20 20:32:11,780 - INFO - Sending request to API at http://127.0.0.1:9999/chat
+2025-11-20 20:32:12,305 - INFO - Request received for model : llama-3.1-8b-instant
+2025-11-20 20:32:17,970 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-20 20:32:19,344 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-20 20:32:19,380 - INFO - Response generated successfully from AI Agent {request.model_name}
+2025-11-20 20:32:19,384 - INFO - Received response from API
+2025-11-20 20:32:26,462 - INFO - Sending request to API at http://127.0.0.1:9999/chat
+2025-11-20 20:32:26,469 - INFO - Request received for model : llama-3.3-70b-versatile
+2025-11-20 20:32:27,793 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-20 20:32:28,711 - INFO - Sending request to API at http://127.0.0.1:9999/chat
+2025-11-20 20:32:28,715 - INFO - Request received for model : llama-3.3-70b-versatile
+2025-11-20 20:32:29,966 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-20 20:32:30,979 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-20 20:32:30,997 - INFO - Response generated successfully from AI Agent {request.model_name}
+2025-11-20 20:32:30,999 - INFO - Received response from API
+2025-11-20 20:32:32,705 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-11-20 20:32:32,721 - INFO - Response generated successfully from AI Agent {request.model_name}
+2025-11-20 20:32:32,722 - INFO - Received response from API
