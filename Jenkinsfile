@@ -4,9 +4,9 @@ pipeline{
      environment {
           SONAR_PROJECT_KEY = 'LLMOPS'
           SONAR_SCANNER_HOME = tool 'Sonarqube'
-        //   AWS_REGION = 'us-east-1'
-        //   ECR_REPO = 'my-repo'
-        //   IMAGE_TAG = 'latest'
+          AWS_REGION = 'us-east-1'
+          ECR_REPO = 'my-repo'
+          IMAGE_TAG = 'latest'
 	 }
 
     stages{
@@ -19,40 +19,43 @@ pipeline{
             }
         }
 
-     stage('SonarQube Analysis'){
-	 		steps {
-	 			withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
-    					
-	 				withSonarQubeEnv('Sonarqube') {
-     						sh """
-	 					${SONAR_SCANNER_HOME}/bin/sonar-scanner \
-	 					-Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-	 					-Dsonar.sources=. \
-	 					-Dsonar.host.url=http://sonarqube-dind:9000 \
-	 					-Dsonar.login=${SONAR_TOKEN}
-	 					"""
-	 				}
-	 			}
-	 		}
-	 	}
+    stage('SonarQube Analysis') {
+        steps {
+            withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
+                withSonarQubeEnv('Sonarqube') {
+                sh """
+                ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
+                  -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                  -Dsonar.sources=. \
+                  -Dsonar.host.url=http://sonarqube-dind:9000 \
+                  -Dsonar.token=${SONAR_TOKEN} \
+                  -Dsonar.ws.timeout=600 \
+                  -Dsonar.scanner.metadataTimeout=600 \
+                  -Dsonar.scanner.dumpThreadsOnTimeout=true
+                """
+            }
+        }
+    }
+}
 
-    // stage('Build and Push Docker Image to ECR') {
-    //         steps {
-    //             withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-token']]) {
-    //                 script {
-    //                     def accountId = sh(script: "aws sts get-caller-identity --query Account --output text", returnStdout: true).trim()
-    //                     def ecrUrl = "${accountId}.dkr.ecr.${env.AWS_REGION}.amazonaws.com/${env.ECR_REPO}"
 
-    //                     sh """
-    //                     aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ecrUrl}
-    //                     docker build -t ${env.ECR_REPO}:${IMAGE_TAG} .
-    //                     docker tag ${env.ECR_REPO}:${IMAGE_TAG} ${ecrUrl}:${IMAGE_TAG}
-    //                     docker push ${ecrUrl}:${IMAGE_TAG}
-    //                     """
-    //                 }
-    //             }
-    //         }
-    //     }
+    stage('Build and Push Docker Image to ECR') {
+            steps {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-token']]) {
+                    script {
+                        def accountId = sh(script: "aws sts get-caller-identity --query Account --output text", returnStdout: true).trim()
+                        def ecrUrl = "${accountId}.dkr.ecr.${env.AWS_REGION}.amazonaws.com/${env.ECR_REPO}"
+
+                        sh """
+                        aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ecrUrl}
+                        docker build -t ${env.ECR_REPO}:${IMAGE_TAG} .
+                        docker tag ${env.ECR_REPO}:${IMAGE_TAG} ${ecrUrl}:${IMAGE_TAG}
+                        docker push ${ecrUrl}:${IMAGE_TAG}
+                        """
+                    }
+                }
+            }
+        }
 
     //     stage('Deploy to ECS Fargate') {
     // steps {
