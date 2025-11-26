@@ -76,8 +76,8 @@ docker --version
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/data-guru0/MULTI-AI-AGENT-PROJECTS.git
-cd MULTI-AI-AGENT-PROJECTS
+git clone https://github.com/usaxena27/MULTI-AI-AGENT.git
+cd MULTI-AI-AGENT
 ```
 
 ### 2. Create and Activate a Virtual Environment
